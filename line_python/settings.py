@@ -25,7 +25,7 @@ SECRET_KEY = 'r5kr6@#ba2&0t4w3&aa8qb_iy=xhpx8v5o85i!*ptqh!-)n0$s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'linebot-with-python.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'linebot-develop.herokuapp.com']
 
 
 # Application definition
