@@ -16,7 +16,7 @@ LINE_HEADER = {
 def index(request):
     return HttpResponse("It works!")
 
-def callback(request_json):
+def callback_line(request_json):
     reply = ""
     request = json.loads(request_json.body.decode('utf-8'))
     for e in request["events"]:
