@@ -1,41 +1,19 @@
-import os
-import json
-import random
-import requests
+from . import reply_line,access_docomo
 
-from django.shortcuts import render
-from django.http import HttpResponse
-
-REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
-ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
-HEADER = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer " + ACCESS_TOKEN
-}
-
-def index(request):
-    return HttpResponse("It works!")
-
-def callback(request_json):
+def bot_controller(request):
     reply = ""
-    request = json.loads(request_json.body.decode('utf-8'))
     for e in request["events"]:
         reply_token = e["replyToken"]
         if e["type"] == "message":
             if e["message"]["type"] == "text":
-                reply += e["message"]["text"]
+                reply += "developing with docomoAPI"
             else:
                 reply += "only text message"
             reply_message(reply_token, reply)
-    return HttpResponse(reply)
-
-def make_text():
-    from . import reply_words
-    return random.choice(reply_words)
 
 
 def reply_message(reply_token, reply):
-    reply_body = {
+    payload = {
         "replyToken":reply_token,
         "messages":[
             {
@@ -44,4 +22,4 @@ def reply_message(reply_token, reply):
             }
         ]
     }
-    requests.post(REPLY_ENDPOINT, headers=HEADER, data=json.dumps(reply_body))
+    reply_line(payload)
