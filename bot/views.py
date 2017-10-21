@@ -1,4 +1,4 @@
-from . import reply_line,access_docomo
+from . import reply_line
 
 def bot_controller(request):
     reply = ""
