@@ -13,5 +13,5 @@ LINE_HEADER = {
 def callback_line(request):
     bot_controller(json.loads(request.body.decode('utf-8'))
 
-def reply_line(reply):
-    requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
+#def reply_line(reply):
+   # requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
