@@ -16,5 +16,3 @@ def callback_line(request):
 def reply_line(reply):
     requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
 
-def access_docomo(request):
-     requests.post(
