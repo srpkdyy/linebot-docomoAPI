@@ -1,7 +1,7 @@
 import os
 import json
 import requests
-from . import bot_controller
+from . import views
 
 LINE_REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
 LINE_ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")

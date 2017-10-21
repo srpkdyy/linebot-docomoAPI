@@ -1,4 +1,4 @@
-from . import reply_line
+from . import interface
 
 def bot_controller(request):
     reply = ""
