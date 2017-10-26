@@ -1,4 +1,4 @@
-from interface import callback_line
+from . import interface.callback_line
 
 def bot_controller(request):
     reply = ""
