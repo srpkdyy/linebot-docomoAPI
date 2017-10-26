@@ -12,8 +12,9 @@ LINE_HEADER = {
 }
 
 def callback_line(request):
-    views.bot_controller(json.loads(request.body.decode('utf-8')))
-    return HttpResponse("It works.")
-
-def reply_line(reply):
+    reply = views.bot_controller(json.loads(request.body.decode('utf-8')))
     requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
+    return HttpResponse("It works")
+
+def access_docomo(request):
+    return reply

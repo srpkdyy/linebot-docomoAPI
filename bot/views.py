@@ -1,25 +1,28 @@
 from . import interface
 
 def bot_controller(request):
-    reply = ""
+    reply_text = ""
+
     for e in request["events"]:
         reply_token = e["replyToken"]
+
         if e["type"] == "message":
             if e["message"]["type"] == "text":
-                reply += "developing with docomoAPI"
+                reply_text += "developing with docomoAPI"
             else:
-                reply += "only text message"
-            reply_message(reply_token, reply)
+                reply_text += "only text message"
+            
+            return create_reply(reply_token, reply_text)
 
 
-def reply_message(reply_token, reply):
+def create_reply(reply_token, reply_text):
     payload = {
         "replyToken":reply_token,
         "messages":[
             {
                 "type":"text",
-                "text": reply
+                "text": reply_text
             }
         ]
     }
-    interface.reply_line(payload)
+    return payload
