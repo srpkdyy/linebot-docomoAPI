@@ -2,6 +2,7 @@ import os
 import json
 import requests
 from . import views
+from django.http import HttpResponse
 
 LINE_REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
 LINE_ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
@@ -12,7 +13,7 @@ LINE_HEADER = {
 
 def callback_line(request):
     views.bot_controller(json.loads(request.body.decode('utf-8')))
+    return HttpResponse("It works.")
 
 def reply_line(reply):
     requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
-
