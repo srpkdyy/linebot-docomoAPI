@@ -9,7 +9,7 @@ def bot_controller(request):
                 reply += "developing with docomoAPI"
             else:
                 reply += "only text message"
-            reply_message(reply_token, reply)
+            return reply_message(reply_token, reply)
 
 
 def reply_message(reply_token, reply):
@@ -22,4 +22,4 @@ def reply_message(reply_token, reply):
             }
         ]
     }
-    interface.reply_line(payload)
+    return payload

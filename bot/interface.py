@@ -11,8 +11,6 @@ LINE_HEADER = {
 }
 
 def callback_line(request):
-    views.bot_controller(json.loads(request.body.decode('utf-8')))
-
-def reply_line(reply):
-    requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
+    reply = views.bot_controller(json.loads(request.body.decode('utf-8')))
+    return requests.post(LINE_REPLY_ENDPOINT, headers=LINE_HEADER, data=json.dumps(reply))
 
