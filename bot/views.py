@@ -35,7 +35,8 @@ def parse_json(request_json):
 
 def get_username(request):
     res_json = requests.get(USER_INFO + request, headers=HEADER)
-    return res_json.text["displayName"][:10]
+    username = json.loads(res_json.text)["displayName"]
+    return username[:10]
 
 def reply_message(reply_token, reply):
     reply_body = {
