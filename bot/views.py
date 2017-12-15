@@ -31,7 +31,7 @@ def callback(request_json):
             reply_message(reply_token, reply)
 
 def parse_json(request_json):
-    return json.loads(request.body.decode('utf-8'))
+    return json.loads(request_json.body.decode('utf-8'))
 
 def get_username(request):
     res_json = requests.get(USER_INFO + request, headers=HEADER)
