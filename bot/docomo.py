@@ -10,7 +10,7 @@ HEADER = {
 }
 
 def reply(request_text, username):
-    reply = "test"
+    reply = (str)username
     return reply
     
 
