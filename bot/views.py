@@ -3,6 +3,7 @@ import json
 import random
 import requests
 
+from . import docomo
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -12,27 +13,30 @@ HEADER = {
     "Content-Type": "application/json",
     "Authorization": "Bearer " + ACCESS_TOKEN
 }
+USER_INFO = 'https://api.line.me/v2/bot/profile/'
 
 def index(request):
     return HttpResponse("It works!")
 
 def callback(request_json):
     reply = ""
-    request = json.loads(request_json.body.decode('utf-8'))
+    request = parse_json(request_json)
     for e in request["events"]:
         reply_token = e["replyToken"]
         if e["type"] == "message":
             if e["message"]["type"] == "text":
-                reply += e["message"]["text"]
+                reply += docomo.reply(e["message"]["text"], get_username(e["source"]["userId"]))
             else:
-                reply += "only text message"
+                reply += "Not text message yet."
             reply_message(reply_token, reply)
-    return HttpResponse(reply)
 
-def make_text():
-    from . import reply_words
-    return random.choice(reply_words)
+def parse_json(request_json):
+    return json.loads(request.body.decode('utf-8'))
 
+def get_username(request):
+    res_json = requests.get(USER_INFO + request, headers=HEADER)
+    res = parse_json(res_json)
+    return res["displayName"]
 
 def reply_message(reply_token, reply):
     reply_body = {
