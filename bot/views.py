@@ -2,11 +2,13 @@ import os
 import json
 import random
 import requests
+import logging
 
 from . import docomo
 from django.shortcuts import render
 from django.http import HttpResponse
 
+logger = logging.getLogger(__name__)
 REPLY_ENDPOINT = 'https://api.line.me/v2/bot/message/reply'
 ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
 HEADER = {
@@ -36,6 +38,7 @@ def parse_json(request_json):
 def get_username(request):
     res_json = requests.get(USER_INFO + request, headers=HEADER)
 #    res = parse_json(res_json)
+    logger.info(res_json)
     return res_json["displayName"]
 
 def reply_message(reply_token, reply):
