@@ -10,5 +10,5 @@ heroku config:set LINE_ACCESS_TOKEN={YOUR Channel Access Token}
 
 ## Author
 
-[leader931334](https://github.com/leader931334)
+[srpkdyy](https://github.com/srpkdyy)
 
